@@ -1,0 +1,376 @@
+/* Enhanced Article Editor Styles */
+
+.modal--edit {
+  width: min(95vw, 1200px) !important;
+  height: 92vh !important;
+  max-height: 92vh !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important;
+  overflow: hidden !important;
+}
+
+.modal-editor {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  gap: 0;
+}
+
+.modal-editor .modal__header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--card-border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.modal-editor-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 24px 20px 20px;
+  padding-right: 12px;
+  min-height: 0; /* allow this flex child to shrink and enable scrolling */
+}
+
+.modal-editor-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-editor-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-editor-content::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.modal-editor-content::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.modal-editor .modal__footer {
+  border-top: 1px solid var(--card-border);
+  padding: 16px 24px;
+  flex-shrink: 0;
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+  }
+.quill-wrapper--large .ql-toolbar.ql-snow button:hover .ql-fill,
+.quill-wrapper--large .ql-toolbar.ql-snow button:focus .ql-fill,
+.quill-wrapper--large .ql-toolbar.ql-snow button.ql-active .ql-fill {
+  fill: var(--accent);
+}
+
+.quill-wrapper--large .ql-container {
+  border: none;
+  font-family: inherit;
+  font-size: 16px;
+  flex: 1;
+  min-height: 350px;
+  overflow-y: auto;
+}
+
+/* Ensure editor meta (title/category/tag inputs) don't scroll */
+.quill-wrapper--large {
+  min-height: 400px;
+  flex: 1;
+}
+
+.quill-wrapper--large .ql-editor {
+  padding: 20px;
+  color: var(--ink);
+  min-height: 350px;
+}
+
+.quill-wrapper--large .ql-editor.ql-blank::before {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Modal Content Scrolling */
+.modal {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Scrollable body wrapper for non-edit modals */
+.modal__body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  min-height: 0; /* required so grid can constrain height and show scrollbar */
+}
+
+.modal__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal__body::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+.modal > form,
+.modal > * > form {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Editor Meta Grid */
+.editor__meta {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  gap: 12px;
+}
+
+.editor__meta input,
+.editor__meta select {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: #fff;
+  font-size: 14px;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+  margin-top: auto;
+}
+
+/* Editor Help Text */
+.editor-help {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #faf8f3;
+  border: 1px solid #f0e8dc;
+  border-radius: 8px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.editor-help strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal--edit {
+    width: min(95vw, 100%) !important;
+    height: 95vh !important;
+    max-height: 95vh !important;
+  }
+
+  .modal-editor-content {
+    padding: 16px 16px 16px 12px;
+  }
+
+  .editor__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .quill-wrapper--large {
+    min-height: 300px;
+  }
+
+  .quill-wrapper--large .ql-editor {
+    min-height: 300px;
+  }
+
+  .quill-wrapper--large .ql-container {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 16px;
+  }
+
+  .modal--edit {
+    padding: 12px;
+  }
+
+  .quill-wrapper--large .ql-toolbar {
+    padding: 8px;
+  }
+
+  .quill-wrapper--large .ql-editor {
+    padding: 12px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+
+  /* Decorative hero illustration */
+  .hero {
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero__illustration {
+    position: absolute;
+    right: 28px;
+    top: 12px;
+    width: 320px;
+    height: auto;
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  /* Decorative art inside cards (e.g., Articles right side) */
+  .card__art {
+    position: absolute;
+    opacity: 0.95;
+    pointer-events: none;
+    width: 160px;
+    height: auto;
+  }
+
+  .card__art--right {
+    right: 16px;
+    bottom: 12px;
+  }
+
+  /* ensure card is positioned to allow absolute art */
+  .card {
+    position: relative;
+  }
+}
+
+/* Overview page fixed-card rules: keep card heights stable and inner lists scrollable */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.overview-card {
+  display: flex;
+  flex-direction: column;
+  /* fixed height so cards don't grow with page content */
+  height: 46vh;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.overview-card .list,
+.overview-card .timeline {
+  overflow-y: auto;
+  padding-right: 8px;
+  flex: 1 1 auto;
+  min-height: 0; /* allow flex children to shrink and scroll */
+}
+
+/* Latest Articles: no internal scrollbar — show exactly two items */
+.overview-card--latest {
+  height: auto;
+}
+
+.overview-card--latest .list {
+  overflow: visible;
+  max-height: none;
+}
+
+/* For narrow screens stack cards */
+@media (max-width: 900px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-card {
+    height: auto;
+    min-height: 200px;
+  }
+}
+
+/* Larger modal style for creating new articles */
+.modal--create {
+  width: min(95vw, 1100px) !important;
+  height: 88vh !important;
+  max-height: 80vh !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important;
+  overflow: hidden !important;
+}
+
+.modal--create .editor__meta input,
+.modal--create .editor__meta select {
+  height: 46px;
+}
+
+.modal--create .editor__textarea {
+  width: 100%;
+  min-height: 250px;
+  max-height: 62vh;
+  resize: vertical;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  font-size: 15px;
+}
+
+/* small utility for inline icon spacing */
+.icon--inline {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 8px;
+}
+
+/* Make regular article modal content scrollable */
+.modal:not(.modal--edit) {
+  display: grid !important;
+  grid-template-rows: auto 1fr !important;
+  overflow: hidden !important;
+}
+
+.modal:not(.modal--edit) > :last-child:not(.modal__footer) {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.modal:not(.modal--edit) > :last-child:not(.modal__footer)::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal:not(.modal--edit) > :last-child:not(.modal__footer)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal:not(.modal--edit) > :last-child:not(.modal__footer)::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+.modal:not(.modal--edit) > :last-child:not(.modal__footer)::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
