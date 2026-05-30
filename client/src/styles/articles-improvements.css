@@ -58,11 +58,13 @@
   border-top: 1px solid var(--card-border);
   padding: 16px 24px;
   flex-shrink: 0;
-  .hero__actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 18px;
-  }
+}
+
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
 .quill-wrapper--large .ql-toolbar.ql-snow button:hover .ql-fill,
 .quill-wrapper--large .ql-toolbar.ql-snow button:focus .ql-fill,
 .quill-wrapper--large .ql-toolbar.ql-snow button.ql-active .ql-fill {
