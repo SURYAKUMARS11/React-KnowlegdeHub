@@ -7,10 +7,11 @@ const TOKEN_COOKIE = "kms_token";
 const COOKIE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
 function getCookieOptions() {
+  const isProd = process.env.NODE_ENV === "production";
   return {
     httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    sameSite: isProd ? "none" : "lax",
+    secure: isProd,
     maxAge: COOKIE_MAX_AGE_MS,
   };
 }
@@ -91,11 +92,7 @@ async function me(req, res) {
 }
 
 function logout(req, res) {
-  res.clearCookie(TOKEN_COOKIE, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-  });
+  res.clearCookie(TOKEN_COOKIE, getCookieOptions());
   return res.status(204).send();
 }
 
