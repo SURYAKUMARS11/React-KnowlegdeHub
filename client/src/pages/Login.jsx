@@ -58,7 +58,7 @@ function Login() {
 
     try {
       const data = await login(form);
-      setUser(data.user);
+      setUser(data.user, data.token);
       showToast({ message: "Login successful. Welcome back!", tone: "success" });
       navigate("/");
     } catch (err) {

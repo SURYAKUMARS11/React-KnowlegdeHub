@@ -5,7 +5,7 @@ async function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization || "";
   const headerToken = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
   const cookieToken = req.cookies?.kms_token;
-  const token = cookieToken || headerToken;
+  const token = headerToken || cookieToken;
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { register } from "../services/auth";
 
 function Register() {
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
   const { showToast } = useToast();
   const [form, setForm] = useState({
     name: "",
@@ -72,14 +74,15 @@ function Register() {
 
     setLoading(true);
     try {
-      await register({
+      const data = await register({
         name: form.name,
         email: form.email,
         password: form.password,
         role: form.role,
       });
-      showToast({ message: "Register success! Please sign in.", tone: "success" });
-      navigate("/login");
+      setUser(data.user, data.token);
+      showToast({ message: "Registration successful. Welcome!", tone: "success" });
+      navigate("/");
     } catch (err) {
       const message = err.message || "Registration failed";
       setError(message);

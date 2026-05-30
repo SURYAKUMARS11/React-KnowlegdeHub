@@ -10,6 +10,7 @@ const commentRoutes = require("./routes/commentRoutes");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
+app.set("trust proxy", 1);
 
 const clientOrigin = getEnv("CLIENT_ORIGIN", "http://localhost:5173");
 

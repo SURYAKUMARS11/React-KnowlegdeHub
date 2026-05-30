@@ -13,8 +13,16 @@ export function AuthProvider({ children }) {
     } catch (error) {
       // Ignore logout errors; client state is still reset.
     } finally {
+      localStorage.removeItem("kms_token");
       setUser(null);
     }
+  };
+
+  const setUserWithToken = (userData, token) => {
+    if (token) {
+      localStorage.setItem("kms_token", token);
+    }
+    setUser(userData);
   };
 
   useEffect(() => {
@@ -47,7 +55,7 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       user,
-      setUser,
+      setUser: setUserWithToken,
       logout,
       authLoading,
     }),

@@ -6,12 +6,14 @@ const { requireFields } = require("../utils/validators");
 const TOKEN_COOKIE = "kms_token";
 const COOKIE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
-function getCookieOptions() {
+function getCookieOptions(req) {
   const isProd = process.env.NODE_ENV === "production";
+  const isSecure = isProd || (req && req.secure);
+  
   return {
     httpOnly: true,
-    sameSite: isProd ? "none" : "lax",
-    secure: isProd,
+    sameSite: isSecure ? "none" : "lax",
+    secure: isSecure,
     maxAge: COOKIE_MAX_AGE_MS,
   };
 }
@@ -40,8 +42,9 @@ async function register(req, res, next) {
     });
 
     const token = signToken(user);
-    res.cookie(TOKEN_COOKIE, token, getCookieOptions());
+    res.cookie(TOKEN_COOKIE, token, getCookieOptions(req));
     return res.status(201).json({
+      token,
       user: {
         id: user._id,
         name: user.name,
@@ -73,8 +76,9 @@ async function login(req, res, next) {
     }
 
     const token = signToken(user);
-    res.cookie(TOKEN_COOKIE, token, getCookieOptions());
+    res.cookie(TOKEN_COOKIE, token, getCookieOptions(req));
     return res.json({
+      token,
       user: {
         id: user._id,
         name: user.name,
@@ -92,7 +96,7 @@ async function me(req, res) {
 }
 
 function logout(req, res) {
-  res.clearCookie(TOKEN_COOKIE, getCookieOptions());
+  res.clearCookie(TOKEN_COOKIE, getCookieOptions(req));
   return res.status(204).send();
 }
 
