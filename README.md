@@ -1,93 +1,87 @@
-KMS (MERN)
+# Knowledge Hub - MERN Stack Application
 
-Overview
-A Knowledge Management System for creating, sharing, and searching knowledge articles.
+A modern, advanced Knowledge Management System built with the MERN (MongoDB, Express, React, Node.js) stack. This application allows teams to curate, share, and discuss knowledge through a polished and feature-rich interface.
 
-Key features
-- JWT-based user authentication
-- Article CRUD with Markdown content, categories, and tags
-- Search across articles
-- Admin dashboard to manage users
+## 🚀 Key Features
 
-Primary use cases
-- Capture internal runbooks and SOPs
-- Publish product and API documentation
-- Organize knowledge by categories and tags
-- Discover content with search and filters
-- Track activity and keep content current
+*   **Article Library:** Create, edit, and manage articles with a rich text editor.
+*   **Modern UI/UX:** Clean, responsive design with support for **Dark Mode**.
+*   **Advanced Search:** Real-time, debounced search with filtering by category and tags.
+*   **Collaboration:** Integrated threaded comment system for article discussions.
+*   **Performance:** Backend pagination (limit 4 per page) for efficient data loading.
+*   **Content Management:** Support for drafts, categories, and tags.
+*   **Security:** JWT-based authentication and role-based access control (Admin/User).
+*   **Live Database:** Pre-configured for MongoDB Atlas connectivity.
 
-Roles
-- Admin: full access, user oversight
-- Editor: create and update own articles
-- Viewer/User: read and search articles
+## 🛠️ Tech Stack
 
-Structure
-- client: React front end
-- server: Express API
-- .github: Workspace instructions
+- **Frontend:** React, Vite, React Router, CSS Variables (Theming), Lucide Icons.
+- **Backend:** Node.js, Express, MongoDB (Mongoose), JWT.
+- **Tools:** Concurrently (running client/server), Nodemon, DOMPurify (sanitization), Marked (Markdown parsing).
 
-Core workflows
-1) Register or sign in
-2) Browse or search articles
-3) Create or edit articles with Markdown
-4) Review details and share internally
-5) Admin reviews users and usage insights
+---
 
-Quick start
-1) Install dependencies in each workspace:
-	- npm install
-	- npm install --prefix client
-	- npm install --prefix server
-2) Configure the server environment:
-	- Copy server/.env.example to server/.env
-	- Set MONGODB_URI to your MongoDB Atlas connection string
-	- Set JWT_SECRET to a strong secret
-3) Start both client and server:
-	- npm run dev
+## 🏁 Getting Started
 
-Environment variables
-- MONGODB_URI: MongoDB connection string
-- JWT_SECRET: secret for signing auth tokens
-- PORT: API port (default 5000)
-- VITE_API_URL: client API base URL (default /api)
+Follow these steps to get the project up and running on your local machine.
 
-Scripts
-- npm run dev --prefix client
-- npm run dev --prefix server
-- npm test --prefix client
-- npm test --prefix server
+### 1. Prerequisites
+- [Node.js](https://nodejs.org/) installed (v16+ recommended).
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance).
 
-API overview
-- GET /health
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/auth/me
-- GET /api/articles
-- GET /api/articles/search
-- GET /api/articles/meta
-- GET /api/articles/:id
-- POST /api/articles
-- PUT /api/articles/:id
-- DELETE /api/articles/:id
-- GET /api/dashboard/summary
-- GET /api/dashboard/activity
-- GET /api/dashboard/categories
-- GET /api/dashboard/tags
-- GET /api/dashboard/contributors
-- GET /api/users
+### 2. Environment Setup
 
-Data model (high level)
-- User: name, email, passwordHash, role, isActive
-- Article: title, content, category, tags, author, timestamps
+#### Backend (`/server/.env`):
+Create a `.env` file in the `server` folder with the following:
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_random_secret_string
+```
 
-Auth flow
-1) Client posts credentials to /api/auth/login
-2) API returns JWT token
-3) Client stores token and sends Authorization: Bearer <token>
-4) Protected endpoints validate token and role
+#### Frontend (`/client/.env`):
+Create a `.env` file in the `client` folder with the following:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
-Testing
-1) Run server unit and functional tests:
-	- npm test --prefix server
-2) Run client unit tests:
-	- npm test --prefix client
+### 3. Installation
+From the root directory, run the following command to install dependencies for the root, client, and server:
+```bash
+npm install
+cd client && npm install
+cd ../server && npm install
+cd ..
+```
+
+### 4. Running the Application
+You can start both the frontend and backend concurrently from the root directory:
+```bash
+npm run dev
+```
+
+*   **Frontend:** [http://localhost:5173/](http://localhost:5173/)
+*   **Backend:** [http://localhost:5000/](http://localhost:5000/)
+
+---
+
+## 📁 Project Structure
+
+```text
+/
+├── client/          # React (Vite) frontend
+├── server/          # Express backend
+├── package.json     # Root scripts for monorepo management
+└── .gitignore       # Consolidated Git exclusions
+```
+
+## 📜 Available Scripts
+
+- `npm run dev`: Runs both client and server in development mode.
+- `npm run dev:client`: Runs only the frontend.
+- `npm run dev:server`: Runs only the backend.
+
+---
+
+## 🛡️ License
+This project is private.
